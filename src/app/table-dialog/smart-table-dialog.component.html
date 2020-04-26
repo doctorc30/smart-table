@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<mat-dialog-content>
+  <form [formGroup]="form">
+    <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
+      <div class="after-form-content" *ngIf="data.afterFormTemplate">
+        <ng-template *ngTemplateOutlet="data.afterFormTemplate; context: {value: model}"></ng-template>
+      </div>
+      <div class="card__buttons">
+        <button *ngIf="data.submitButtonText && data.submitFunc"
+                type="submit"
+                mat-raised-button
+                color="primary"
+                (click)="submit()"
+                [disabled]="!form.valid">{{data.submitButtonText}}
+        </button>
+        <button *ngIf="data.closeButtonText"
+                class="card__buttons__close-button"
+                mat-raised-button
+                (click)="close()">{{data.closeButtonText}}
+        </button>
+      </div>
+    </formly-form>
+  </form>
+</mat-dialog-content>
+<button type="button"
+        class="close-button"
+        mat-icon-button
+        (click)="close()">
+  <mat-icon>close</mat-icon>
+</button>

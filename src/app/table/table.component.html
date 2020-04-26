@@ -1,0 +1,29 @@
+<div class="filter__container">
+  <button *ngIf="hasCreate" type="button" class="btn btn-rose"
+          (click)="createActionOptions.action.invoke({value: null, column: null, options: options})">{{createActionOptions.buttonText}}
+  </button>
+  <mat-form-field class="filter__input">
+    <input matInput placeholder="Фильтр..." [formControl]="filterFormControl">
+  </mat-form-field>
+</div>
+<app-crud-table
+  [externalPaging]="true"
+  [limit]="filter.take"
+  [offset]="filter.page"
+  [count]="total"
+  (onPage)="onPage($event)"
+
+  [columns]="columns"
+  [rows]="rows | async">
+</app-crud-table>
+
+<ng-template #actionsColumn let-column="column" let-value="value">
+  <button
+    *ngFor="let ao of column.actionsOptions"
+    mat-icon-button
+    color="primary"
+    type="button"
+    (click)="ao.action.invoke({value: value, column: column, options: options})">
+    <mat-icon>{{ao.icon}}</mat-icon>
+  </button>
+</ng-template>

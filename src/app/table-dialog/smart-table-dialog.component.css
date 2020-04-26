@@ -1,0 +1,33 @@
+.card {
+  box-shadow: 0 11px 15px -7px rgba(0, 0, 0, .2), 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12);
+}
+
+.card .card-content {
+  padding: 20px 25px !important;
+}
+
+.card__buttons {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.card__buttons__close-button {
+  margin-left: 8px;
+}
+
+.close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+>>> .smart-table-delete-dialog mat-dialog-container {
+  width: min-content;
+  height: unset !important;
+  overflow: hidden !important;
+  min-width: unset !important;
+  position: relative;
+  border-radius: 8px;
+}

@@ -1,0 +1,35 @@
+<div [ngClass]="class">
+  <ngx-datatable
+    (page)="onPage.emit($event)"
+    [externalPaging]="externalPaging"
+    [limit]="limit"
+    [offset]="offset"
+    [count]="count"
+
+    class="material"
+    [footerHeight]="50"
+    [columnMode]="'force'"
+    [rows]="rows"
+    [rowHeight]="'auto'">
+
+    <ngx-datatable-column [name]="column.name"
+                          [maxWidth]="column.maxWidth"
+                          [flexGrow]="column.flexGrow"
+                          [cellClass]="column.class"
+                          *ngFor="let column of columns">
+
+      <ng-container *ngIf="column.template != null">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <ng-template *ngTemplateOutlet="column.template; context: getContext(row, column)"></ng-template>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngIf="column.template == null">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{getView(value, column)}}
+        </ng-template>
+      </ng-container>
+
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
